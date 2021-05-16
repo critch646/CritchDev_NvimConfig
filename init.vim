@@ -1,3 +1,20 @@
+" ============================================================================
+" Vim-plug initialization
+" ============================================================================
+let vim_plug_just_installed = 0
+let vim_plug_path = expand('$HOME/.config/nvim/autoload/plug.vim')
+if !filereadable(vim_plug_path)
+  echo "Installing Vim-plug..."
+  silent !mkdir -p $HOME/.config/nvim/autoload
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let vim_plug_just_installed = 1
+endif
+
+" manually load vim-plug the first time
+if vim_plug_just_installed
+  :execute 'source '.fnameescape(vim_plug_path)
+endif
+
 " **********************
 " Dev Zeke's NVim init.vim Config
 " **********************
@@ -36,3 +53,9 @@ set scrolloff=3
 
 " Clear search results
 nnoremap <silent> // :noh<CR>
+
+" Theme
+set background=dark
+set termguicolors
+let g:quantum_black=1
+colorscheme quantum
